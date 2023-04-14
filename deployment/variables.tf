@@ -1,5 +1,5 @@
 locals {
-  account_id = data.aws_caller_identity.current.account_id
+  account_id  = data.aws_caller_identity.current.account_id
   region_name = data.aws_region.current.name
 }
 
@@ -52,9 +52,9 @@ variable "service_name" {
 }
 
 variable "desired_count" {
-  type = number
+  type        = number
   description = "Desired quantity of containers"
-  default = 1
+  default     = 1
 }
 
 data "aws_caller_identity" "current" {}
