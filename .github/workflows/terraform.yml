@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
+    defaults:
+      run:
+        working-directory: deployment/
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -25,28 +28,20 @@ jobs:
       - name: Terraform Format
         id: fmt
         run: terraform fmt -check
-        with:
-          tf_actions_working_dir: deployment/
 
       - name: Terraform Init
         id: init
         run: terraform init
-        with:
-          tf_actions_working_dir: deployment/
 
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
-        with:
-          tf_actions_working_dir: deployment/
 
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'pull_request'
         run: terraform plan -no-color -input=false
         continue-on-error: true
-        with:
-          tf_actions_working_dir: deployment/
 
       - name: Update Pull Request
         uses: actions/github-script@v6
@@ -79,5 +74,3 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false
-        with:
-          tf_actions_working_dir: deployment/
