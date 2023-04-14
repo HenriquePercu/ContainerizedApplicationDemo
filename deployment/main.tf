@@ -9,7 +9,7 @@ resource "aws_ecs_task_definition" "demo_container_application_task_definition" 
   container_definitions = jsonencode([
     {
       name   = var.aws_ecr_repository
-      image  = "${local.account_id}.dkr.ecr.${local.region_name}.amazonaws.com/<<container_name>>:latest" // parametrizar essa informacao
+      image  = "${local.account_id}.dkr.ecr.${local.region_name}.amazonaws.com/demo_ecs_repository:latest" // parametrizar essa informacao
       cpu    = var.fargate_cpu
       memory = var.fargate_memory
       portMappings = [
