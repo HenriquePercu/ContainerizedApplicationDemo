@@ -1,0 +1,17 @@
+name: Workflow
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+  terraform:
+    uses: ./.github/workflows/terraform.yaml
+  aws:
+    if: ${{ !github.event.issue.pull_request }}
+    needs: terraform
+    uses: ./.github/workflows/aws.yaml
