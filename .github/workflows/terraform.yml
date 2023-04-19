@@ -2,7 +2,10 @@ name: "Terraform"
 
 on:
   workflow_call:
-
+    secrets:
+      access_token:
+        description: 'A token passed from the caller workflow'
+        required: true
 jobs:
   terraform:
     name: "Terraform"
