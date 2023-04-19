@@ -15,7 +15,7 @@ jobs:
   terraform:
     uses: ./.github/workflows/terraform.yml
     secrets:
-      token: ${{ secrets.TF_API_TOKEN }}
+      access-token: ${{ secrets.TF_API_TOKEN }}
     permissions:
       pull-requests: write
   aws:
