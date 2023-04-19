@@ -4,10 +4,15 @@ on:
     branches: [ "main" ]
   pull_request:
   workflow_dispatch:
+    env:
+      MY_ENV_VAR: ${{ secrets.TF_API_TOKEN }}
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Group of log lines
+        run: |
+          echo "$MY_ENV_VAR"
       - uses: actions/checkout@v3
   terraform:
     uses: ./.github/workflows/terraform.yml
