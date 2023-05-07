@@ -4,6 +4,13 @@ name: Deploy to Amazon ECS
 
 on:
   workflow_call:
+    secrets:
+      aws-access-key:
+        description: 'A token passed from the caller workflow'
+        required: true
+      aws-secret-key:
+        description: 'A token passed from the caller workflow'
+        required: true
 
 env:
   AWS_REGION: us-west-2                   # set this to your preferred AWS region, e.g. us-west-1
