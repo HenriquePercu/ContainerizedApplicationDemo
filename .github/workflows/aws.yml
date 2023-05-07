@@ -7,7 +7,7 @@ on:
 
 env:
   AWS_REGION: us-west-2                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: demo_ect             # 600023384173.dkr.ecr.ap-south-1.amazonaws.com/demo_ecs_app           # set this to your Amazon ECR repository name
+  ECR_REPOSITORY: demo_ecr             # 600023384173.dkr.ecr.ap-south-1.amazonaws.com/demo_ecs_app           # set this to your Amazon ECR repository name
   ECS_SERVICE: demo_containerized_app                 # set this to your Amazon ECS service name
   ECS_CLUSTER: demo_ecs_cluster                 # set this to your Amazon ECS cluster name
   CONTAINER_NAME: demo_containerized_app           # set this to the name of the container in the
@@ -29,9 +29,9 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+          aws-access-key-id: ${{ secrets.aws-access-key }}
+          aws-secret-access-key: ${{ secrets.aws-secret-key }}
+          aws-region: ${{ secrets.region }}
 
       - name: Login to Amazon ECR
         id: login-ecr

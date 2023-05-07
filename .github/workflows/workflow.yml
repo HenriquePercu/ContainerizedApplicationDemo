@@ -7,6 +7,12 @@ on:
     secrets:
       access-token:
         required: true
+      aws-access-key:
+        required: true
+      aws-secret-key:
+        required: true
+      aws-region:
+        required: true
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,3 +28,7 @@ jobs:
     if: ${{ !github.event.issue.pull_request }}
     needs: terraform
     uses: ./.github/workflows/aws.yml
+    secrets:
+      aws-access-key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      aws-secret-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      aws-region: ${{ env.AWS_REGION }}
