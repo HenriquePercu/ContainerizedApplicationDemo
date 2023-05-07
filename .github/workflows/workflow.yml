@@ -1,0 +1,32 @@
+name: Workflow
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+  workflow_dispatch:
+    secrets:
+      access-token:
+        required: true
+      aws-access-key:
+        required: true
+      aws-secret-key:
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+  terraform:
+    uses: ./.github/workflows/terraform.yml
+    secrets:
+      access-token: ${{ secrets.TF_API_TOKEN }}
+    permissions:
+      pull-requests: write
+  aws:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+    needs: terraform
+    uses: ./.github/workflows/aws.yml
+    secrets:
+      aws-access-key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      aws-secret-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

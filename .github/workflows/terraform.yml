@@ -1,11 +1,11 @@
 name: "Terraform"
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-
+  workflow_call:
+    secrets:
+      access-token:
+        description: 'A token passed from the caller workflow'
+        required: true
 jobs:
   terraform:
     name: "Terraform"
@@ -23,7 +23,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           # terraform_version: 1.4.2
-          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+          cli_config_credentials_token: ${{secrets.access-token}}
 
       - name: Terraform Format
         id: fmt

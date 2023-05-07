@@ -7,8 +7,6 @@ data "aws_iam_role" "ecs_task_execution_role" {
   name = "ecsTaskExecutionRole"
 }
 
-// COLOCAR O CLUSTER AQUI
-
 data "aws_ecs_cluster" "ecs_cluster" {
   cluster_name = "demo_ecs_cluster"
 }

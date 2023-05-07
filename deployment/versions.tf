@@ -15,7 +15,7 @@ terraform {
     organization = "private-henrique-percu"
 
     workspaces {
-      name = "github-actions"
+      name = "ecs-service-deploy"
     }
   }
 }
