@@ -29,6 +29,11 @@ resource "aws_ecs_service" "main" {
   desired_count   = var.desired_count
   launch_type     = "FARGATE"
 
+  network_configuration {
+    subnets          = ["subnet-029716d74513844c3"]
+    assign_public_ip = false
+  }
+
   depends_on = [
     aws_ecs_task_definition.demo_container_application_task_definition,
   ]
