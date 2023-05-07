@@ -24,7 +24,7 @@ jobs:
     permissions:
       pull-requests: write
   aws:
-    if: ${{ !github.event.issue.pull_request }}
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
     needs: terraform
     uses: ./.github/workflows/aws.yml
     secrets:
