@@ -6,12 +6,22 @@ resource "aws_ecs_task_definition" "demo_container_application_task_definition" 
   requires_compatibilities = ["FARGATE"]
   cpu                      = var.fargate_cpu
   memory                   = var.fargate_memory
-  container_definitions = jsonencode([
+  container_definitions    = jsonencode([
     {
       name   = var.aws_container_definition_name
-      image  = "${local.account_id}.dkr.ecr.${local.region_name}.amazonaws.com/demo_ecs_repository:latest" // parametrizar essa informacao
+      image  = "${local.account_id}.dkr.ecr.${local.region_name}.amazonaws.com/demo_ecs_repository:latest"
+      // parametrizar essa informacao
       cpu    = var.fargate_cpu
       memory = var.fargate_memory
+      logConfiguration : {
+        logDriver : "awslogs",
+        options : {
+          awslogs-group : "demo_log_group",
+          awslogs-region : "us-west-2",
+          awslogs-create-group : "true",
+          awslogs-stream-prefix : "firelens"
+        }
+      }
       portMappings = [
         {
           containerPort = var.app_port
