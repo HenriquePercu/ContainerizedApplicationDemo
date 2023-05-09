@@ -29,10 +29,10 @@ variable "fargate_memory" {
   default     = 1024
 }
 
-variable "aws_ecr_repository" {
+variable "aws_container_definition_name" {
   type        = string
-  description = "ECR repo name"
-  default     = "demo_ecs_repository"
+  description = "Container Definition Name"
+  default     = "demo_containerized_app"
 }
 
 variable "app_port" {
