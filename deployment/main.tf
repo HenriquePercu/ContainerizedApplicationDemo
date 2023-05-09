@@ -14,12 +14,12 @@ resource "aws_ecs_task_definition" "demo_container_application_task_definition" 
       cpu    = var.fargate_cpu
       memory = var.fargate_memory
       logConfiguration : {
-        logDriver : "awslogs"
-        options : {
-          awslogs-group : "demo_log_group"
-          awslogs-region : "us-west-2"
-          awslogs-create-group : "true"
-          awslogs-stream-prefix : "firelens"
+        logDriver = "awslogs"
+        options = {
+          awslogs-group = "demo_log_group"
+          awslogs-region = "us-west-2"
+          awslogs-create-group = "true"
+          awslogs-stream-prefix = "firelens"
         }
       }
       portMappings = [
