@@ -13,7 +13,7 @@ resource "aws_ecs_task_definition" "demo_container_application_task_definition" 
       // parametrizar essa informacao
       cpu    = var.fargate_cpu
       memory = var.fargate_memory
-      logConfiguration : {
+      logConfiguration = {
         logDriver = "awslogs"
         options = {
           awslogs-group = "demo_log_group"
