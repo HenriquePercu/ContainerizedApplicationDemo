@@ -18,7 +18,7 @@ resource "aws_ecs_task_definition" "demo_container_application_task_definition" 
         options = {
           awslogs-group         = "default_log_group"
           awslogs-region        = data.aws_region.current.name
-          awslogs-create-group  = true
+          awslogs-create-group  = "true"
           awslogs-stream-prefix = "app"
         }
       }
