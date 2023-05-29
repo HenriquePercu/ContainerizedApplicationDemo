@@ -1,3 +1,7 @@
+resource "aws_cloudwatch_log_group" "default_log_group" {
+  name = "default_log_group"
+}
+
 resource "aws_ecs_task_definition" "demo_container_application_task_definition" {
 
   family                   = var.aws_ecs_task_def_fam
@@ -17,8 +21,7 @@ resource "aws_ecs_task_definition" "demo_container_application_task_definition" 
         logDriver = "awslogs"
         options = {
           awslogs-group         = "default_log_group"
-          awslogs-region        = data.aws_region.current.name
-          awslogs-create-group  = "true"
+          awslogs-region        = local.region_name
           awslogs-stream-prefix = "app"
         }
       }
