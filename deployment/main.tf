@@ -2,6 +2,11 @@ resource "aws_cloudwatch_log_group" "default_log_group" {
   name = "default_log_group"
 }
 
+resource "aws_cloudwatch_log_stream" "app" {
+  name           = "app"
+  log_group_name = aws_cloudwatch_log_group.default_log_group.name
+}
+
 resource "aws_ecs_task_definition" "demo_container_application_task_definition" {
 
   family                   = var.aws_ecs_task_def_fam
