@@ -1,7 +1,5 @@
 name: Deploy to Amazon ECS
 
-# TODO etapas build -> testes unitarios
-
 on:
   workflow_call:
     secrets:
