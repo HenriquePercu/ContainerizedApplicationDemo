@@ -49,7 +49,7 @@ resource "aws_ecs_service" "main" {
 
   network_configuration {
     subnets          = ["subnet-029716d74513844c3"]
-    assign_public_ip = false
+    assign_public_ip = true
   }
 
   depends_on = [
