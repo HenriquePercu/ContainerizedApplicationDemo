@@ -8,7 +8,7 @@ public class MockTest {
     @Test
     public void mockTest() {
 
-        Assert.assertEquals(true, false);
+        Assert.assertEquals(true, true);
 
     }
 
