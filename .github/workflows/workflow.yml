@@ -17,12 +17,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+  application-checks:
+    uses: ./.github/workflows/application-checks.yml
   terraform:
     uses: ./.github/workflows/terraform.yml
     secrets:
       access-token: ${{ secrets.TF_API_TOKEN }}
     permissions:
       pull-requests: write
+
   aws:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs: terraform
