@@ -26,6 +26,6 @@ These actions are executed when PR merge:
 TODO
 
 - Auto scaling group
-- Quando executar PR também executar o build e testes unitários
 - Adicionar testes unitarios.
 - Fix: Set assign_public_ip to false...actually is true because otherwise cannot download image from ECR : https://stackoverflow.com/questions/61265108/aws-ecs-fargate-resourceinitializationerror-unable-to-pull-secrets-or-registry
+- Put result of unit tests on github actions
